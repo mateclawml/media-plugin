@@ -1,0 +1,59 @@
+{
+  "name": "mateclaw-media-plugin",
+  "version": "0.1.0",
+  "description": "为 OpenClaw 提供本机 FFmpeg 驱动的媒体探测、抽帧、音频提取与转码工具。",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateclawml/media-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mateclawml/media-plugin/issues"
+  },
+  "homepage": "https://github.com/mateclawml/media-plugin",
+  "engines": {
+    "node": ">=24.22.1"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "plugin:build": "npm run build && openclaw plugins build --entry ./dist/index.js",
+    "plugin:validate": "npm run build && openclaw plugins validate --entry ./dist/index.js",
+    "test": "vitest run --config ./vitest.config.ts",
+    "smoke": "npm run build && node scripts/smoke.mjs",
+    "prepack": "npm run plugin:build"
+  },
+  "files": [
+    "dist",
+    "scripts",
+    "openclaw.plugin.json",
+    "README.md",
+    "SPEC.md",
+    "IMPLEMENTATION-NOTES.md",
+    "LICENSE",
+    "NOTICE.md"
+  ],
+  "peerDependencies": {
+    "openclaw": ">=2026.11.9"
+  },
+  "dependencies": {
+    "typebox": "^1.1.38"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "openclaw": "2026.11.9",
+    "typescript": "7.0.2",
+    "vitest": "^3.2.0"
+  },
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.11.9"
+    },
+    "build": {
+      "openclawVersion": "2026.11.9"
+    }
+  }
+}

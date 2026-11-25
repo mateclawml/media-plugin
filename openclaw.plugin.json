@@ -1,0 +1,33 @@
+{
+  "id": "mateclaw-media-plugin",
+  "name": "MateClaw 音视频",
+  "description": "使用本机 FFmpeg 探测媒体、抽帧、提取音频与转码。",
+  "categories": [
+    "media"
+  ],
+  "version": "0.1.0",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "timeoutMs": {
+        "type": "integer",
+        "minimum": 1000,
+        "maximum": 1800000,
+        "default": 600000,
+        "description": "单次 FFmpeg 或 ffprobe 执行的超时毫秒数，默认 10 分钟，最大 30 分钟。"
+      }
+    },
+    "additionalProperties": false
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "contracts": {
+    "tools": [
+      "media_probe",
+      "video_extract_frames",
+      "audio_extract",
+      "media_convert"
+    ]
+  }
+}
